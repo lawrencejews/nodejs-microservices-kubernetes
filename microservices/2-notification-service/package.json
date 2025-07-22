@@ -1,0 +1,12 @@
+{
+  "name": "2-notification-service",
+  "version": "1.0.0",
+  "description": "The market-place application is built with `React`, `Typescript`, `Tailwindcss` for the Frontend and `NodeJS `for the backend ![Notification-Email-Service](notification-email.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
