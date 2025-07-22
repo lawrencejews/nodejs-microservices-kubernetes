@@ -9,5 +9,5 @@ These services are required to be executed first with so as to prevent errors wh
 The `marketplace-k8s` folder contains the objects code needed to deploy the microservices to kubernetes.
 The microservices are deployed to both `Minikube` and `AWS EKS Cluster`
 ### Microservices
+- Notification-email-service
 
-### Volumes
