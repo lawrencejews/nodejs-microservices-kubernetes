@@ -47,6 +47,9 @@ services:
     container_name: rabbitmq_container
     image: rabbitmq:4.1-management-alpine
     restart: always 
+    environment:
+      - RABBITMQ_DEFAULT_USER=marketplace
+      - RABBITMQ_DEFAULT_PASS=marketplacepass
     ports:
       - '5672:5672' # AMQP protocol port
       - '15672:15672' # Management UI
