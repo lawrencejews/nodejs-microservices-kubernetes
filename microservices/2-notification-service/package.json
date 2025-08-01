@@ -26,6 +26,7 @@
     "tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^9.1.0",
     "@lawrencejews/marketplace-shared": "^0.0.2",
     "amqplib": "^0.10.8",
     "dotenv": "^17.2.1",
