@@ -1,37 +1,31 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "importHelpers": true,
-    "lib": [
-      "dom",
-      "esnext"
-    ],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmitOnError": true,
+    "target": "ES2015",
+    "lib": ["dom", "ES2015"],
+    "module": "commonjs",
     "baseUrl": ".",
     "outDir": "./build",
     "rootDir": ".",
-    "sourceMap": true,
     "strict": true,
-    "target": "es2021",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "pretty": true,
     "resolveJsonModule": true,
     "plugins": [
-      {"transform": "typescript-transform-paths"},
-      {"transform": "typescript-transform-paths", "afterDeclarations": true},
+      { "transform": "typescript-transform-paths" },
+      { "transform": "typescript-transform-paths", "afterDeclarations": true },
     ],
-    "paths":{"@notification/*": ["src/*"]}
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "paths": {
+      "@notifications/*": ["src/*"]
+    }
+  }
 }

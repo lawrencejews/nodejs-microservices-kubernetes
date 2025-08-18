@@ -1,5 +1,5 @@
 import { Client } from '@elastic/elasticsearch';
-import { config } from '@notification/config';
+import { config } from '@notifications/config';
 import { winstonLogger } from '@lawrencejews/marketplace-shared';
 import { Logger } from 'winston';
 import { ClusterHealthResponse } from '@elastic/elasticsearch/lib/api/types';
