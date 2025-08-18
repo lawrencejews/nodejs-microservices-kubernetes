@@ -1,11 +1,11 @@
 import 'express-async-errors';
 import { winstonLogger } from '@lawrencejews/marketplace-shared';
 import { Logger } from 'winston';
-import { config } from "@notification/config";
+import { config } from "@notifications/config";
 import { Application } from 'express';
 import http from 'http';
-import { healthRoutes } from '@notification/rout';
-import { checkConnection } from '@notification/elasticsearch';
+import { healthRoutes } from '@notifications/rout';
+import { checkConnection } from '@notifications/elasticsearch';
 
 const SERVER_PORT = 4001;
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'notificationServer', 'debug');
@@ -31,9 +31,9 @@ function startServer(app: Application): void{
 
   try { 
     const httpServer: http.Server = new http.Server(app);
-    log.info(`Worker with process id of ${process.pid} on notification server has started`)
+    log.info(`Worker with process id of ${process.pid} on notifications server has started`)
     httpServer.listen(SERVER_PORT, () => {
-      log.info(`Notification server running on port ${SERVER_PORT}`)
+      log.info(`Notifications server running on port ${SERVER_PORT}`)
     })
   } catch(error) {
     log.log('error', 'notificationService startService() method', error);

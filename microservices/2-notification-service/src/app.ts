@@ -1,8 +1,8 @@
 import { winstonLogger } from '@lawrencejews/marketplace-shared';
-import { config } from "@notification/config";
+import { config } from "@notifications/config";
 import { Logger } from 'winston';
 import express, { Express } from 'express'
-import { start } from "@notification/server";
+import { start } from "@notifications/server";
 
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'notificationApp', 'debug');
 
