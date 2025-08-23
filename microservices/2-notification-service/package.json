@@ -11,7 +11,7 @@
   "author": "Lawrencejews",
   "license": "ISC",
   "devDependencies": {
-    "@types/amqplib": "^0.10.7",
+    "@types/amqplib": "0.10.6",
     "@types/email-templates": "^10.0.4",
     "@types/express": "^5.0.3",
     "@types/nodemailer": "^6.4.17",
@@ -28,7 +28,7 @@
   "dependencies": {
     "@elastic/elasticsearch": "^9.1.0",
     "@lawrencejews/marketplace-shared": "^0.0.3",
-    "amqplib": "^0.10.8",
+    "amqplib": "0.10.6",
     "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
     "email-templates": "^12.0.3",
