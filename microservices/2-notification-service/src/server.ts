@@ -1,5 +1,5 @@
 import 'express-async-errors';
-import { winstonLogger } from '@lawrencejews/marketplace-shared';
+import { IEmailMessageDetails, winstonLogger } from '@lawrencejews/marketplace-shared';
 import { Logger } from 'winston';
 import { config } from "@notifications/config";
 import { Application } from 'express';
@@ -28,9 +28,18 @@ async function startQueues(): Promise<void>{
   await consumerOrderEmailMessages(emailChannel);
 }
 
+// const messageDetails: IEmailMessageDetails = {}
+
+// await emailChannel.assertExchange();
+// const message1 = JSON.stringify({ name: , service: });
+// emailChannel.publish(, , Buffer.from(message1));
+
+
 function startElasticSearch(): void{
   checkConnection();
 }
+
+
 
 function startServer(app: Application): void{
 
