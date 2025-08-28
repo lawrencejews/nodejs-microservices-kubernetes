@@ -1,8 +1,9 @@
-import { winstonLogger } from "@lawrencejews/marketplace-shared";
+import { IEmailLocals, winstonLogger } from "@lawrencejews/marketplace-shared";
 import { config } from "@notifications/config";
 import { Channel, ConsumeMessage } from "amqplib";
 import { createConnection } from '@notifications/queues/connection';
 import { Logger } from "winston";
+ import { sendEmail } from "@notifications/queues/mail.transport";
 
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'emailConsumer', 'debug');
 
@@ -43,7 +44,7 @@ async function consumerOrderEmailMessages(channel: Channel): Promise<void> {
       channel = await createConnection() as Channel
     }
 
-    const exchangeName = 'lawrencejews-orde-notification';
+    const exchangeName = 'lawrencejews-order-notification';
     const routingKey = 'order-email';
     const queueName = 'order-email-queue';
 
@@ -52,10 +53,70 @@ async function consumerOrderEmailMessages(channel: Channel): Promise<void> {
     await channel.bindQueue(marketplaceQueue.queue, exchangeName, routingKey);
 
     channel.consume(marketplaceQueue.queue, async (msg: ConsumeMessage | null) => {
-      console.log(JSON.parse(msg!.content.toString()));
+      //console.log(JSON.parse(msg!.content.toString()));
+      const {
+        receiverEmail,
+        username,
+        template,
+        sender,
+        offerLink,
+        amount,
+        buyerUsername,
+        sellerUsername,
+        title,
+        description,
+        deliveryDays,
+        orderId,
+        orderDue,
+        requirements,
+        orderUrl,
+        originalDate,
+        newDate,
+        reason,
+        subject,
+        header,
+        type,
+        message,
+        serviceFee,
+        total
+      } = JSON.parse(msg!.content.toString());
+      
+      const locals: IEmailLocals = {
+        appLink: `${config.CLIENT_URL}`,
+        appIcon: 'https://i.ibb.co/Kyp2m0t/cover.png',
+        username,
+        sender,
+        offerLink,
+        amount,
+        buyerUsername,
+        sellerUsername,
+        title,
+        description,
+        deliveryDays,
+        orderId,
+        orderDue,
+        requirements,
+        orderUrl,
+        originalDate,
+        newDate,
+        reason,
+        subject,
+        header,
+        type,
+        message,
+        serviceFee,
+        total
+      }
 
       // Send Emails
-
+      if (template === 'orderPlaced') {
+        await sendEmail('orderPlaced', receiverEmail, locals);
+        await sendEmail('orderReceipt', receiverEmail, locals)
+      }
+      else {
+        await sendEmail(template, receiverEmail, locals);
+      }
+    
       // Acknowledge
       channel.ack(msg!);
     })

@@ -9,7 +9,7 @@ import Email from 'email-templates';
 
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'mailTransportHelper', 'debug');
 
-async function emailTemplates(template: string, receivers: string, locals: IEmailLocals):Promise < void> {
+async function emailTemplates(template: string, receivers: string, locals: IEmailLocals):Promise <void> {
   
   try {
     
