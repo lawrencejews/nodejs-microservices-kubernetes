@@ -23,9 +23,16 @@ async function consumerAuthEmailMessages(channel: Channel): Promise<void>{
     await channel.bindQueue(marketplaceQueue.queue, exchangeName, routingKey);
 
     channel.consume(marketplaceQueue.queue, async (msg: ConsumeMessage | null) => {
-      console.log(JSON.parse(msg!.content.toString()));
-
+      const {receiverEmail, username, verifyLink, resetLink, template } = (JSON.parse(msg!.content.toString()));
+      const locals: IEmailLocals = {
+        appLink: `${config.CLIENT_URL}`,
+        appIcon: 'https://i.ibb.co/Kyp2m0t/cover.png',
+        username,
+        verifyLink,
+        resetLink
+      }
       // Send Emails
+      await sendEmail(template, receiverEmail, locals);
 
       // Acknowledge
       channel.ack(msg!);
@@ -80,7 +87,7 @@ async function consumerOrderEmailMessages(channel: Channel): Promise<void> {
         serviceFee,
         total
       } = JSON.parse(msg!.content.toString());
-      
+
       const locals: IEmailLocals = {
         appLink: `${config.CLIENT_URL}`,
         appIcon: 'https://i.ibb.co/Kyp2m0t/cover.png',
