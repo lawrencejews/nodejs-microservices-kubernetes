@@ -1,5 +1,5 @@
 import 'express-async-errors';
-import { IEmailMessageDetails, winstonLogger } from '@lawrencejews/marketplace-shared';
+import {  winstonLogger } from '@lawrencejews/marketplace-shared';
 import { Logger } from 'winston';
 import { config } from "@notifications/config";
 import { Application } from 'express';
