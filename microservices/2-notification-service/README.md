@@ -16,3 +16,4 @@ ELASTIC_APM_SECRET_TOKEN=
 ```
 #### Email Testing
 Ethereal is a fake SMTP service, mostly aimed at `Nodemailer` and `EmailEngine` users. It's a completely free anti-transactional email service where messages never get delivered. Instead, you can generate a vanity email account right from Nodemailer, send an email using that account just as you would with any other SMTP provider and finally preview the sent message here as no emails are actually delivered.`https://ethereal.email/`
+RUN the notification-service with `docker compose up -d notifications`
