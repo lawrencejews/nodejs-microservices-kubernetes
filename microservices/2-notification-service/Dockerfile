@@ -5,7 +5,7 @@ COPY package.json  ./
 COPY tsconfig.json ./ 
 COPY .nmprc ./ 
 COPY src ./src 
-RUN ls -a 
+COPY tools ./tools
 RUN npm install -g npm@latest 
 RUN ci && npm run build 
 
