@@ -22,4 +22,4 @@ ELASTIC_SEARCH_URL=http://localhost:9200
 ELASTIC_APM_SERVER_URL=http://localhost:8200
 ELASTIC_APM_SECRET_TOKEN=
 ```
-- `GLOBAL TOKEN` for all microservices connected to the `gateway service` -> linux creation from the terminal `date | md5`
+- `GLOBAL TOKEN` for all microservices connected to the `gateway service` -> linux secret key generation from the terminal `date | md5`
