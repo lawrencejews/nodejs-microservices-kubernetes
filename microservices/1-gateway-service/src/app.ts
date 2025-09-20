@@ -7,6 +7,7 @@ class Application {
     const app: Express = express();
     const server: GatewayServer = new GatewayServer(app);
     server.start();
+    
   }
 }
 
