@@ -110,7 +110,7 @@ services:
   gateway:
     container_name: gateway_container
     build:
-      context:  ../microservices/1-1-gateway--service
+      context:  ../microservices/1-gateway-service
       dockerfile: Dockerfile.dev
     restart: always
     ports: 
