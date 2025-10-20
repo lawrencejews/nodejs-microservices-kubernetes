@@ -136,6 +136,34 @@ services:
       - ELASTIC_APM_SECRET_TOKEN=
     depends_on:
       - elasticsearch
+  
+  auth:
+    container_name: auth_container
+    build:
+      context: ../server/3-auth-service
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - 4002:4002
+    env_file: ../microservices/3-authentication-service/.env
+    environment:
+      - ENABLE_APM=1
+      - GATEWAY_JWT_TOKEN=a43388b53d4d703304dee73f6c98310e
+      - JWT_TOKEN=2a2c2c7de81bde27bbc91a0e41eb6f89
+      - NODE_ENV=development
+      - AP_GATEWAY_URL=http://gateway_container:4000
+      - CLIENT_URL=http://localhost:3000
+      - RABBITMQ_ENDPOINT=amqp://marketplace:marketplacepass@rabbitmq_container:5672
+      - MYSQL_DB=mysql://marketplace:api@localhost:3306/marketplace_auth
+      - CLOUD_NAME=
+      - CLOUD_API_KEY=
+      - CLOUD_API_SECRET=
+      - ELASTIC_SEARCH_URL=http://elastic:admin1234@elasticsearch_container:9200
+      - ELASTIC_APM_SERVER_URL=http://apm_server_container:8200
+      - ELASTIC_APM_SECRET_TOKEN=
+    depends_on:
+      - elasticsearch
+      - mysql
 
 networks:
   elastic:
