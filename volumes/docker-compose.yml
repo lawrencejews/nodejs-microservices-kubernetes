@@ -140,7 +140,7 @@ services:
   auth:
     container_name: auth_container
     build:
-      context: ../microservices/3-3-authentication-service
+      context: ../microservices/3-authentication-service
       dockerfile: Dockerfile.dev
     restart: always
     ports:
