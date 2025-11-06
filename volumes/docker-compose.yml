@@ -107,6 +107,7 @@ services:
       - ELASTIC_APM_SECRET_TOKEN=
     depends_on:
       - elasticsearch
+      
   gateway:
     container_name: gateway_container
     build:
