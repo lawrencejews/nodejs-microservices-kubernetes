@@ -107,6 +107,7 @@ services:
       - ELASTIC_APM_SECRET_TOKEN=
     depends_on:
       - elasticsearch
+      
   gateway:
     container_name: gateway_container
     build:
@@ -140,7 +141,7 @@ services:
   auth:
     container_name: auth_container
     build:
-      context: ../microservices/3-3-authentication-service
+      context: ../microservices/3-authentication-service
       dockerfile: Dockerfile.dev
     restart: always
     ports:
