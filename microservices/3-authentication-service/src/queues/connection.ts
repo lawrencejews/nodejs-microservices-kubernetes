@@ -28,6 +28,7 @@ function closeConnection(channel: Channel, connection: Connection): void {
   process.once('SIGINT', async () => {
     await channel.close();
     await connection.close();
+    
   });
   
 }

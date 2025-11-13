@@ -1,7 +1,9 @@
+import { config } from '@auth/config';
 import { AuthModel } from '@auth/models/auth.schema';
 import { publicDirectMessage } from '@auth/queues/auth.producer';
 import { authChannel } from '@auth/server';
 import { firstLetterUppercase, IAuthBuyerMessageDetails, IAuthDocument } from '@lawrencejews/marketplace-shared';
+import { sign } from 'jsonwebtoken';
 import { lowerCase, omit } from 'lodash';
 import { Model, Op } from 'sequelize';
 
@@ -117,4 +119,56 @@ export async function getUserByPasswordToken(token: string): Promise<IAuthDocume
   }) as Model;
   return user.dataValues;
 
+}
+
+export async function updateVerifyEmailField(authId: number, emailVerified: number, emailVerificationToken: string): Promise<void> {
+
+  await AuthModel.update(
+    {
+      emailVerified,
+      emailVerificationToken
+    },
+    {
+      where: { id: authId }
+    }
+  );
+}
+
+export async function updatePasswordToken(authId: number,  token: string, tokenExpiration: Date): Promise<void> {
+
+  await AuthModel.update(
+    {
+      passwordResetToken: token,
+      passwordResetExpires: tokenExpiration
+    },
+    {
+      where: { id: authId }
+    }
+  );
+}
+
+export async function password(authId: number, password: string): Promise<void> {
+
+  await AuthModel.update(
+    {
+      password,
+      passwordResetToken: '',
+      passwordResetExpires: new Date()
+    },
+    {
+      where: { id: authId }
+    }
+  );
+}
+
+export function signToken(id: number, email: string, username: string): string{
+  
+  return sign(
+    {
+      id,
+      email,
+      username
+    },
+    config.JWT_TOKEN!
+  );
 }
