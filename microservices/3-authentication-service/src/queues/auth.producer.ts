@@ -8,11 +8,13 @@ import { createConnection } from '@auth/queues/connection';
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'authServiceProducer', 'debug');
 
 export async function publicDirectMessage(
+
   channel: Channel, 
   exchangeName: string,
   routingKey: string,
   message: string,
   logMessage: string
+  
 ): Promise<void>{
 
   try {
